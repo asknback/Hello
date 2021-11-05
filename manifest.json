@@ -1,0 +1,10 @@
+{
+  "name": "Hello",
+  "id": "1033370155993692613",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": [
+    "figma"
+  ],
+  "ui": "ui.html"
+}
