@@ -3,8 +3,8 @@
 // This file holds the main code for the plugins. It has access to the *document*.
 // You can access browser APIs in the <script> tag inside "ui.html" which has a
 // full browser environment (see documentation).
-// This shows the HTML page in "ui.html".
-figma.showUI(__html__);
+// This shows the HTML page in "ui.html". 
+figma.showUI(__html__, { width: 400, height: 400, title: "Create Json" });
 // Calls to "parent.postMessage" from within the HTML page will trigger this
 // callback. The callback will be passed the "pluginMessage" property of the
 // posted message.
@@ -16,14 +16,14 @@ figma.ui.onmessage = msg => {
         for (let i = 0; i < msg.count; i++) {
             const rect = figma.createRectangle();
             rect.x = i * 400;
-            rect.fills = [{ type: 'SOLID', color: { r: 0.5, g: 0.5, b: 0 } }];
+            rect.fills = [{ type: 'SOLID', color: { r: 0.3, g: 0.5, b: 0 } }];
             figma.currentPage.appendChild(rect);
             nodes.push(rect);
         }
         figma.currentPage.selection = nodes;
         figma.viewport.scrollAndZoomIntoView(nodes);
     }
-    // Make sure to close the plugin when you're done. Otherwise the plugin will
+    // Make sure to close the plugin when you're done. Otherwise the plugin will abst
     // keep running, which shows the cancel button at the bottom of the screen.
     figma.closePlugin();
 };
