@@ -1,8 +1,3 @@
-<!-- <h2>Json Creator</h2> -->
-<!-- <p>Count: <input id="count" value="5"></p>
-<button id="create">Create</button>
-<button id="cancel">Cancel</button> -->
-
 <div id="form_wrapper" style="display: flex; flex-direction: column; gap: 8px;">
   <div id="sport_wrapper">
     <label for="sport">Event group 1:</label>
@@ -24,30 +19,17 @@
   </div>
   <div id="createJson_wrapper">
     <button id="createJson_button">DOWNLOAD JSON</button>
+    <button id="createList_button">CREATE LIST</button>
   </div>
 </div>
 
 
-<div id="addLibCompWrapper">
-  <button id="addLibComp">TEST</button>
-</div>
+
 
 <script>
 
-const addLibComp = document.getElementById('addLibComp');
-addLibComp.onclick = function() {
-        console.log("sfrthrshsrthg");
-      }; 
 
-// document.getElementById('create').onclick = () => {
-//   const textbox = document.getElementById('count');
-//   const count = parseInt(textbox.value, 10);
-//   parent.postMessage({ pluginMessage: { type: 'create-rectangles', count } }, '*')
-// }
 
-// document.getElementById('cancel').onclick = () => {
-//   parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*')
-// }
 
 
     // Keep track of arrys for each event group
@@ -69,6 +51,7 @@ addLibComp.onclick = function() {
     const league_drop = document.getElementById('league_drop');
     const createJson_wrapper = document.getElementById('createJson_wrapper');
     const createJson_button = document.getElementById('createJson_button');
+    const createList_button = document.getElementById('createList_button');
 
     // INIT 
     function initJsonCreator() {
@@ -184,7 +167,7 @@ addLibComp.onclick = function() {
 
     function fetchEventsJson() {
       let newUrl = 'https://api.aws.kambicdn.com/offering/v2018/kambi/listView/' + choosenSport + choosenCountry + choosenLeague + 'all/matches.json?lang=en_GB&market=GB&client_id=2&channel_id=1&ncid=1633683214026&useCombined=true&useCombinedLive=true'
-console.log(newUrl)
+// console.log(newUrl)
       let requestURL = newUrl;
       let request = new XMLHttpRequest();
       request.open('GET', requestURL);
@@ -229,14 +212,14 @@ console.log(newUrl)
       events.push(event);
       }
 
-      // const json_wrapper = document.getElementById('json_wrapper');
-      // const pData = document.createElement('p');
-      // pData.textContent = JSON.stringify(events);
-      // json_wrapper.appendChild(pData);
-
       createJson_wrapper.style.display = 'block';
       createJson_button.onclick = function() {
         exportEventsToJsonFile(events);
+      }; 
+
+      createList_button.onclick = function() {
+        // console.log("EVENTS: ", events);
+        parent.postMessage({ pluginMessage: {type:"create-list", payload: events } }, '*')
       }; 
     }
 
