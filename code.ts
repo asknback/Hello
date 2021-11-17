@@ -38,26 +38,12 @@ figma.ui.onmessage = msg => {
   
   // One way of distinguishing between different types of messages sent from
   // your HTML page is to use an object with a "type" property like this.
-  if (msg.type === 'create-list') {
+  if (msg.type === 'alert-me') {
 
     console.log("This from the UI", msg.payload);
 
-    createList(msg.payload);
+  } else {
+    figma.closePlugin();
   }
 
-  //   const nodes: SceneNode[] = [];
-  //   for (let i = 0; i < msg.count; i++) {
-  //     const rect = figma.createRectangle();
-  //     rect.x = i * 400;
-  //     rect.fills = [{type: 'SOLID', color: {r: 0.3, g: 0.5, b: 0}}];
-  //     figma.currentPage.appendChild(rect);
-  //     nodes.push(rect);
-  //   }
-  //   figma.currentPage.selection = nodes;
-  //   figma.viewport.scrollAndZoomIntoView(nodes);
-  // }
-
-  // Make sure to close the plugin when you're done. Otherwise the plugin will abst
-  // keep running, which shows the cancel button at the bottom of the screen.
-  // figma.closePlugin();
 };
