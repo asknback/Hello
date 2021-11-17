@@ -38,9 +38,10 @@ figma.ui.onmessage = msg => {
   
   // One way of distinguishing between different types of messages sent from
   // your HTML page is to use an object with a "type" property like this.
-  if (msg.type === 'alert-me') {
+  if (msg.type === 'create-list') {
 
-    console.log("This from the UI", msg.payload);
+    // console.log("This from the UI", msg.payload);
+    createList(msg.payload); 
 
   } else {
     figma.closePlugin();

@@ -18,7 +18,7 @@
     </select>
   </div>
   <div id="createJson_wrapper">
-    <button id="createJson_button">DOWNLOAD JSON</button>
+    <button id="createJson_button" style="display:none;">DOWNLOAD JSON</button>
     <button id="createList_button">CREATE LIST</button>
   </div>
 </div>
@@ -27,11 +27,6 @@
 
 
 <script>
-
-
-
-
-
     // Keep track of arrys for each event group
     let aSports = []; 
     let aCountries = [];
@@ -167,7 +162,7 @@
 
     function fetchEventsJson() {
       let newUrl = 'https://api.aws.kambicdn.com/offering/v2018/kambi/listView/' + choosenSport + choosenCountry + choosenLeague + 'all/matches.json?lang=en_GB&market=GB&client_id=2&channel_id=1&ncid=1633683214026&useCombined=true&useCombinedLive=true'
-// console.log(newUrl)
+      // console.log(newUrl)
       let requestURL = newUrl;
       let request = new XMLHttpRequest();
       request.open('GET', requestURL);
